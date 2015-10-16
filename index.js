@@ -1,46 +1,40 @@
-'use strict';
-const app = require('app');
-const BrowserWindow = require('browser-window');
+/* eslint-disable */
+var app = require('app'); // Module to control application life.
+var BrowserWindow =
+    require('browser-window'); // Module to create native browser window.
 
-// report crashes to the Electron project
+// Report crashes to our server.
 require('crash-reporter').start();
 
-// adds debug features like hotkeys for triggering dev tools and reload
-require('electron-debug')();
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the javascript object is GCed.
+var mainWindow = null;
 
-// prevent window being garbage collected
-let mainWindow;
-
-function onClosed() {
-	// dereference the window
-	// for multiple windows store them in an array
-	mainWindow = null;
-}
-
-function createMainWindow() {
-	const win = new BrowserWindow({
-		width: 600,
-		height: 400
-	});
-
-	win.loadUrl(`file://${__dirname}/index.html`);
-	win.on('closed', onClosed);
-
-	return win;
-}
-
-app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
+// Quit when all windows are closed.
+app.on('window-all-closed', function() {
+  if (process.platform != 'darwin')
+    app.quit();
 });
 
-app.on('activate-with-no-open-windows', () => {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
-	}
-});
+// This method will be called when Electron has done everything
+// initialization and ready for creating browser windows.
+app.on('ready', function() {
+  // Create the browser window.
+  mainWindow = new BrowserWindow({width : 800, height : 600});
 
-app.on('ready', () => {
-	mainWindow = createMainWindow();
+  // and load the index.html of the app.
+  mainWindow.loadUrl('file://' + __dirname + '/dist/main.html');
+
+  if (process.argv.indexOf('--dev') >= 0) {
+    // Open the devtools.
+    mainWindow.openDevTools();
+  }
+
+  // Emitted when the window is closed.
+  mainWindow.on('closed', function() {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null;
+  });
 });
