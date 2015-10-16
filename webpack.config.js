@@ -8,7 +8,7 @@ var pkg = require('./package.json');
 module.exports = {
   devtool: 'eval',
   resolve: {
-    modulesDirectories: ['src/js'],
+    modulesDirectories: ['src/js', 'semantic/dist'],
     extensions: ['', '.es6', '.js', '.md']
   },
   entry: {
@@ -26,7 +26,11 @@ module.exports = {
       { test: /\.es6$/, loader: 'babel-loader' },
       { test: /\.md$/, loader: "html!markdown" },
       { test: /\.jsx$/, loader: 'babel-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
+      { test: /\.json$/, loader: 'json-loader' },
+      {
+          test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+          loader: "imports?define=>false"
+      }
     ]
   }
 };

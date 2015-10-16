@@ -20,7 +20,7 @@ app.on('window-all-closed', function() {
 // initialization and ready for creating browser windows.
 function createMainWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width : 900, height : 800});
+  mainWindow = new BrowserWindow({width : 1000, height : 800});
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/dist/main.html');

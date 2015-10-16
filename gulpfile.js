@@ -42,7 +42,8 @@ gulp.task('build-src', [ 'build-src:js', 'build-src:css', 'build-src:html' ]);
 
 gulp.task(
     'build-vendor',
-    [ 'build-vendor:js', 'build-vendor:css', 'build-vendor:semantic-ui' ]);
+    [ 'build-vendor:js', 'build-vendor:css', 'build-vendor:semantic-ui',
+      'build-vendor:jquery']);
 
 gulp.task('watch-src', [ 'watch-src:js', 'watch-src:css', 'watch-src:html' ]);
 
@@ -93,8 +94,23 @@ gulp.task('build-vendor:css', function() {
       .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build-vendor:semantic-ui', function() {
-  return gulp.src('bower_components/semantic-ui/dist/**/*')
+gulp.task('build-vendor:jquery', function() {
+  return gulp.src('node_modules/jquery/dist/**/*')
+      .pipe(gulp.dest('dist/jquery'));
+});
+
+gulp.task('build-vendor:semantic-ui-tab', function() {
+  return gulp.src('node_modules/semantic-ui-tab/**/*')
+      .pipe(gulp.dest('dist/semantic-ui'));
+});
+
+gulp.task('build-vendor:semantic-ui-menu', function() {
+  return gulp.src('node_modules/semantic-ui-menu/**/*')
+      .pipe(gulp.dest('dist/semantic-ui'));
+});
+
+gulp.task('build-vendor:semantic-ui', ['build-vendor:semantic-ui-menu', 'build-vendor:semantic-ui-tab'], function() {
+  return gulp.src('semantic/dist/**/*')
       .pipe(gulp.dest('dist/semantic-ui'));
 });
 

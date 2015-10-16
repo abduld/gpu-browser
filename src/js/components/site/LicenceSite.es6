@@ -9,7 +9,6 @@ export default React.createClass({
   displayName: 'LicenceSite',
 
   render() {
-    console.log(licence);
     return (
       <div className="ui licence">
         <div dangerouslySetInnerHTML={{__html: licence}} />
