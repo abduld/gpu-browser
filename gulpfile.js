@@ -21,7 +21,7 @@ function webpackLogger(callback) {
     gutil.log(
         '[webpack] Build success:'.yellow,
         stats.toString(
-            {hash : false, version : false, cached : false, colors : true}));
+            {hash : false, version : false, cached : false, colors : false}));
     if (callback) {
       callback();
     }

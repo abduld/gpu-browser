@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'eval',
   resolve: {
     modulesDirectories: ['src/js'],
-    extensions: ['', '.es6', '.js']
+    extensions: ['', '.es6', '.js', '.md']
   },
   entry: {
     'main': './src/js/main.es6'
@@ -24,6 +24,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.es6$/, loader: 'babel-loader' },
+      { test: /\.md$/, loader: "html!markdown" },
       { test: /\.jsx$/, loader: 'babel-loader' },
       { test: /\.json$/, loader: 'json-loader' }
     ]

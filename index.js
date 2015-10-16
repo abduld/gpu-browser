@@ -18,9 +18,9 @@ app.on('window-all-closed', function() {
 
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
-app.on('ready', function() {
+function createMainWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width : 800, height : 600});
+  mainWindow = new BrowserWindow({width : 900, height : 800});
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/dist/main.html');
@@ -37,4 +37,18 @@ app.on('ready', function() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+};
+
+app.on('window-all-closed', function() {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
+
+app.on('activate-with-no-open-windows', function() {
+  if (!mainWindow) {
+    mainWindow = createMainWindow();
+  }
+});
+
+app.on('ready', function() { mainWindow = createMainWindow(); });
