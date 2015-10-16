@@ -15,6 +15,7 @@ export default React.createClass({
 
   },
   render() {
+    /*
     var dirs = JetPack.cwd(App.getAppPath()).inspectTree("./content/Teaching Kit - Course Content");
     var numModules = 0;
     for (var idx in dirs.children) {
@@ -34,7 +35,13 @@ export default React.createClass({
         children[n] = child;
       }
     }
-    console.log(children);
+    */
+    var numModules = 21;
+    var children = [];
+    for (var idx = 0; idx < numModules; idx++) {
+      var child = {name: "Module" + idx};
+      children.push(child);
+    }
     return (
       <div>
         <div className="ui text container">
@@ -50,8 +57,8 @@ export default React.createClass({
             <div className="ui twelve wide stretched column">
               <div className="ui segment tab" data-tab="1" key="1">
                 <div className="ui twelve wide segment raised stretched column">
-                  <h3 className="ui header">
-                    <i className="ui small file powerpoint outline icon">Lectures</i>
+                  <h3 className="ui dividing header">
+                    Lectures
                   </h3>
                   <div className="ui items">
                       <div className="ui item"> 1.1: Overview </div>
@@ -60,8 +67,8 @@ export default React.createClass({
                   </div>
                 </div>
                 <div className="ui twelve wide segment raised stretched column">
-                  <h3 className="ui header">
-                    <i className="ui small file video outline icon">Videos</i>
+                  <h3 className="ui dividing header">
+                    Videos
                   </h3>
                   <div className="ui items">
                       <div className="ui item"> 1.1: Overview </div>
@@ -70,8 +77,8 @@ export default React.createClass({
                   </div>
                 </div>
                 <div className="ui twelve wide segment raised stretched column">
-                  <h3 className="ui header">
-                    <i className="ui small file code outline icon">Labs</i>
+                  <h3 className="ui dividing header">
+                    Labs
                   </h3>
                   <div className="ui items">
                   </div>

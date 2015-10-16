@@ -8,7 +8,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <h1>Hello world</h1>
+        <h1>Need a description of the toolkit here</h1>
       </div>
     );
   }
