@@ -1,8 +1,8 @@
 import $ from 'jquery';
-// Assure it's available globally.
+// We want to export $ globally
 window.jQuery = $;
 window.$ = $;
-require('imports?$=jquery!../../../semantic/dist/semantic');
+var SemanticUI = require('imports?$=jquery!../../../semantic/dist/semantic');
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 
@@ -10,12 +10,8 @@ export default React.createClass({
 
   displayName: 'App',
 
-  componentDidMount() {
-    this.adjustHeightForBeauty();
-  },
 
   render() {
-    console.log($.tab);
     return (
       <div className="site ui header">
         <div className="ui inverted menu">
@@ -39,6 +35,13 @@ export default React.createClass({
         </div>
       </div>
     );
+  },
+
+  componentDidMount() {
+      $('.tabular.menu .item').first().addClass('active');
+      $('.ui.segment.tab').first().addClass('active');
+      $('.tabular.menu .item').tab();
+
   },
 
   adjustHeightForBeauty() {
