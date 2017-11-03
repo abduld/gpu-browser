@@ -1,5 +1,7 @@
 # gpu-browser
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/abduld/gpu-browser.svg)](https://greenkeeper.io/)
+
 > My gnarly app
 
 
